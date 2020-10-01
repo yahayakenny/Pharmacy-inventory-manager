@@ -1,0 +1,39 @@
+{% extends 'products/base.html'%} {% block content%}
+<br></br>
+
+<div class = "container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price(₦)</th>
+        <th scope="col">Added by</th>
+        <th scope="col">Time</th>
+        <th scope = "col">Detail</th>
+      </tr>
+    </thead>
+    {% for product in products%}
+    <tbody>
+      <tr>    
+        <td>{{product.category_name}}</td>
+        <td>{{product.item_name}}</td>
+        <td>{{product.total_quantity}}</td>
+        <td>₦{{product.unit_price}}</td>
+        <td>{{product.received_by}}</td>
+        <td>{{product.time_received}}</td>
+        <td><a href="{% url 'product_detail' product.id %}"
+              ><input
+                type="submit"
+                value="More"
+                class="btn btn-secondary btn"
+                type="button"
+            /></a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock%}

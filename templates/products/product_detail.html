@@ -1,0 +1,38 @@
+{% extends 'products/base.html'%} {% block content%}
+<br></br>
+
+<div class = "container">
+    <a href="{% url 'issue_item' product.id %}" ><input type="submit" value="Issue Item" class="btn btn-secondary" btn type="button"/></a>
+    <a href="{% url 'add_item' product.id %}" ><input type= "submit" value="Add Item" class="btn btn-secondary btn" type="button"/></a>
+</div>
+
+<br></br>
+<div class = "container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price(₦)</th>
+        <th scope="col">Added by</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>    
+        <td>{{product.category_name}}</td>
+        <td>{{product.item_name}}</td>
+        <td>{{product.total_quantity}}</td>
+        <td>₦{{product.unit_price}}</td>
+        <td>{{product.received_by}}</td>
+        <td>{{product.time_received}}</td>
+      </tr>
+    </tbody>  
+  </table>
+</div>
+
+
+
+{% endblock%}
