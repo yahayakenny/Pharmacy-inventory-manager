@@ -1,0 +1,43 @@
+{% extends 'products/base.html'%} {% block content%}
+<br />
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="text-center">ORDER SUMMARY</h1><br>
+          <h2 class="lead">Customer Name: {{receipt.issued_to | title}}</h2>
+        </div>
+        <div class="card-block">
+          <div class="table-responsive">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <td><strong>Item Name</strong></td>
+                  <td class="text-xs-center"><strong>Item Quantity</strong></td>
+                  <td class="text-xs-right"><strong>Total Bill(₦)</strong></td>
+                  <td class="text-xs-right"><strong>Amount Paid(₦)</strong></td>
+                  <td class="text-xs-right">
+                    <strong>Total change(₦)</strong>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{receipt.item_name | title}}</td>
+                  <td class="text-xs-center">{{receipt.item_number }}</td>
+                  <td class="text-xs-center">₦{{receipt.get_total | title}}</td>
+                  <td class="text-xs-right">₦{{ receipt.amount_received }}</td>
+                  <td class="text-xs-right">₦{{ receipt.get_change }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

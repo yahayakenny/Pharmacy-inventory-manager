@@ -1,21 +1,23 @@
 {% extends 'products/base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 <br><br>
- <div class = "body container-fluid container">
-    <div class="container container-fluid top">
-        <h1 class = "text-secondary text-center">Welcome to Pharm Plus</h1><br><br>  
-    </div>
+ <div class = "body container-fluid container login">
+     <div class="container container-fluid top">
+        <h1 class = "text-white text-center" style = "color: #800020 ">LOGIN.</h1><br><br>  
+       </div>     
+  
     <div class="container container-fluid">
         <form id = "form" method="POST"> 
             {% csrf_token %}  
             {{form | crispy}}
             <br> <br> 
             <input type="submit" name = "Submit" class="btn btn-info btn-danger btn-block" type="button">
-            <br>  
-                     
-      </form>       
+            <br>                
+      </form>  
+       
     </div>
 </div>  
 {% endblock %}

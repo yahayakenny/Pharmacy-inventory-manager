@@ -4,14 +4,7 @@ from .models import *
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['item_name', 'category_name', 'total_quantity']
-
-
-class SalesForm(ModelForm):
-    class Meta:
-        model = Sale
-        fields = '__all__'
-
+        fields = ['amount_received', 'issued_to', 'item_number', ]
 
 class IssueForm(ModelForm):
     class Meta:
@@ -21,4 +14,4 @@ class IssueForm(ModelForm):
 class AddForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['received_quantity', 'received_by']
+        fields = ['received_quantity']

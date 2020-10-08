@@ -2,7 +2,7 @@
 <br></br>
 
 <div class = "container">
-    <a href="{% url 'issue_item' product.id %}" ><input type="submit" value="Issue Item" class="btn btn-secondary" btn type="button"/></a>
+    <a href="{% url 'issue_item' product.id %}" ><input type="submit" value="Order Item" class="btn btn-secondary" btn type="button"/></a>
     <a href="{% url 'add_item' product.id %}" ><input type= "submit" value="Add Item" class="btn btn-secondary btn" type="button"/></a>
 </div>
 
@@ -19,7 +19,6 @@
         <th scope="col">Time</th>
       </tr>
     </thead>
-    
     <tbody>
       <tr>    
         <td>{{product.category_name}}</td>
@@ -32,7 +31,4 @@
     </tbody>  
   </table>
 </div>
-
-
-
 {% endblock%}
