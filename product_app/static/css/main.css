@@ -39,7 +39,7 @@ form {
 }
 
 @media(max-width: 767px){
-    form {
+    form { 
         width: 90%;
     }
 }
