@@ -7,9 +7,9 @@
     
     <div class="card-body">
       <h3 class="card-title">Customer : {{sale.issued_to | title}}</h3>
-      <h6 class="card-text">Item : {{sale.item_name }}</h6>
+      <h6 class="card-text">Item : {{sale.item}}</h6>
       <h6 class="card-text">Amount Paid:  ₦{{ sale.amount_received }}</h6>
-      <h6 class="card-text">Quantity: {{sale.item_number }}</h6>
+      <h6 class="card-text">Quantity: {{sale.quantity }}</h6>
       <h2>Total Price :  ₦{{ sale.get_total }}</h2>
       <div style="flex: 1">
         <h6 class="card-text">Change Collected:  ₦{{ sale.get_change }}</h6>

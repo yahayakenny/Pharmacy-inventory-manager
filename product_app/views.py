@@ -12,7 +12,7 @@ def home(request):
 
 @login_required
 def receipt(request): 
-    sales = Product.objects.all().order_by('-id')
+    sales = Sale.objects.all().order_by('-id')
     total  = sum([items.amount_received for items in sales])
     change = sum([items.get_change() for items in sales])
     net = total - change
@@ -26,7 +26,7 @@ def receipt(request):
 
 
 def all_sales(request):
-    sales = Product.objects.all()
+    sales = Sale.objects.all()
     total  = sum([items.amount_received for items in sales])
     change = sum([items.get_change() for items in sales])
     net = total - change
@@ -40,13 +40,14 @@ def all_sales(request):
 
 
 @login_required
-def update(request,customer_id):
-    update = Product.objects.get(id = customer_id)
-    form = ProductForm(instance = update)
+def update(request,product_id):
+    update = Product.objects.get(id = product_id)
+    form = SaleForm()
     if request.method == 'POST':
-        form = ProductForm(request.POST, instance = update )
+        form = SaleForm(request.POST)
         if form.is_valid():
             form.save()
+            print(f"Here is the form {form}" )
             return redirect('receipt')
     return render(request, 'products/add_item.html', {'form': form})
 
@@ -66,34 +67,27 @@ def product_detail(request, product_id):
 
 @login_required
 def receipt_detail(request, receipt_id):
-    receipt = Product.objects.get(id = receipt_id)
+    receipt = Sale.objects.get(id = receipt_id)
     return render(request, 'products/receipt_detail.html', {'receipt': receipt})
 
 
 @login_required
 def issue_item(request, pk):
     issued_item = Product.objects.get(id = pk)
-    form = IssueForm(request.POST or None, instance=issued_item)
-    sales_form = ProductForm()
+   
+    print(request.POST)
+    sales_form = SaleForm(request.POST)
 
-    if form.is_valid():   
-        instance = form.save(commit = False)
-        instance.total_quantity -= instance.issued_quantity
-        instance.save()
-
-    if request.method == 'POST':  
-        issued_item = Product.objects.get(id = pk)
-        sales_form = ProductForm(request.POST or None, instance=issued_item) 
-
+    if request.method == 'POST':     
         if sales_form.is_valid():
-            sales_form.save()
+            new_sale = sales_form.save(commit=False)
+            new_sale.item = issued_item
+            new_sale.unit_price = issued_item.unit_price   
+            new_sale.save()
             return redirect('receipt') 
-
 
     return render (request, 'products/add_item.html',
      {
-    'form': form,
-    'issued_item': issued_item, 
     'sales_form': sales_form,
     })
     

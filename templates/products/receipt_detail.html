@@ -25,8 +25,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{receipt.item_name | title}}</td>
-                  <td class="text-xs-center">{{receipt.item_number }}</td>
+                  <td>{{receipt.item| title}}</td>
+                  <td class="text-xs-center">{{receipt.quantity }}</td>
                   <td class="text-xs-center">₦{{receipt.get_total | title}}</td>
                   <td class="text-xs-right">₦{{ receipt.amount_received }}</td>
                   <td class="text-xs-right">₦{{ receipt.get_change }}</td>

@@ -6,7 +6,7 @@ urlpatterns = [
     path('home/', views.home, name = "home"),
     path('receipt/', views.receipt, name = "receipt"),
     path('receipt/<int:receipt_id>/', views.receipt_detail, name='receipt_detail'),
-    path('update/<int:customer_id>', views.update, name = "update"),
+    path('update/<int:product_id>', views.update, name = "update"),
     path('delete/<int:customer_id>', views.delete, name='delete'),
     path('',auth_views.LoginView.as_view(template_name = 'products/login.html'), name='login'),
     path('logout/',auth_views.LogoutView.as_view(template_name = 'products/logout.html'), name='logout'), 
