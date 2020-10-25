@@ -2,12 +2,22 @@ from django.shortcuts import render, redirect
 from product_app.forms import *
 from product_app.models import Product
 from django.contrib.auth.decorators import login_required
+from product_app.filters import ProductFilter, CategoryFilter
 
 
 # Create your views here.
 def home(request):
     products = Product.objects.all().order_by('-id')
-    return render(request, 'products/index.html', {'products': products})
+    product_filters = ProductFilter(request.GET, queryset = products)
+    products = product_filters.qs
+
+    # categories = Category.objects.all()
+    # category_filters = CategoryFilter(request.GET, queryset = categories)
+    # categories = category_filters.qs
+
+    return render(request, 'products/index.html', {
+        'products': products, 'product_filters': product_filters,
+    })
 
 
 @login_required
@@ -74,8 +84,6 @@ def receipt_detail(request, receipt_id):
 @login_required
 def issue_item(request, pk):
     issued_item = Product.objects.get(id = pk)
-   
-    print(request.POST)
     sales_form = SaleForm(request.POST)
 
     if request.method == 'POST':     

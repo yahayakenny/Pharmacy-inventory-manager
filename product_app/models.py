@@ -12,7 +12,6 @@ class Product(models.Model):
     category_name = models.ForeignKey(Category, on_delete = models.CASCADE,null = True, blank = True )
     item_name = models.CharField(max_length = 50, null = True, blank = True)
     total_quantity = models.IntegerField(default = 0, null = True, blank = True)
-    item_number = models.IntegerField(default = 0, null = True, blank = True)
     issued_quantity = models.IntegerField(default = 0, null = True, blank = True)
     received_quantity = models.IntegerField(default = 0, null = True, blank = True)
     unit_price = models.IntegerField(default = 0, null = True, blank = True)
