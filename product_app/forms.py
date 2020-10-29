@@ -1,11 +1,6 @@
 from django.forms import ModelForm
 from .models import *
 
-class IssueForm(ModelForm):
-    class Meta:
-        model = Product
-        fields = ['issued_quantity']
-
 class AddForm(ModelForm):
     class Meta:
         model = Product

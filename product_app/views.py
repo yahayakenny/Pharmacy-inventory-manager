@@ -11,10 +11,6 @@ def home(request):
     product_filters = ProductFilter(request.GET, queryset = products)
     products = product_filters.qs
 
-    # categories = Category.objects.all()
-    # category_filters = CategoryFilter(request.GET, queryset = categories)
-    # categories = category_filters.qs
-
     return render(request, 'products/index.html', {
         'products': products, 'product_filters': product_filters,
     })
@@ -84,7 +80,7 @@ def receipt_detail(request, receipt_id):
 @login_required
 def issue_item(request, pk):
     issued_item = Product.objects.get(id = pk)
-    sales_form = SaleForm(request.POST)
+    sales_form = SaleForm(request.POST)  
 
     if request.method == 'POST':     
         if sales_form.is_valid():
@@ -92,6 +88,15 @@ def issue_item(request, pk):
             new_sale.item = issued_item
             new_sale.unit_price = issued_item.unit_price   
             new_sale.save()
+            #To keep track of the stock remaining after sales
+            issued_quantity = int(request.POST['quantity'])
+            issued_item.total_quantity -= issued_quantity
+            issued_item.save()
+
+            print(issued_item.item_name)
+            print(request.POST['quantity'])
+            print(issued_item.total_quantity)
+
             return redirect('receipt') 
 
     return render (request, 'products/add_item.html',
@@ -103,11 +108,17 @@ def issue_item(request, pk):
 @login_required
 def add_item(request, pk):
     issued_item = Product.objects.get(id = pk)
-    form = IssueForm(request.POST or None, instance=issued_item)
-    if form.is_valid():
-        instance = form.save(commit = False)
-        instance.total_quantity += instance.issued_quantity
-        instance.save()
-        return redirect('home')
+    form = AddForm(request.POST)
 
-    return render (request, 'products/add_item.html', {'form': form, 'issued_item': issued_item})
+    if request.method == 'POST':
+        if form.is_valid():
+            added_quantity = int(request.POST['received_quantity'])
+            issued_item.total_quantity += added_quantity
+            issued_item.save()
+
+            #To add to the remaining stock quantity is reducing
+            print(added_quantity)
+            print (issued_item.total_quantity)
+            return redirect('home')
+
+    return render (request, 'products/add_to_stock.html', {'form': form})
