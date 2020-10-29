@@ -28,7 +28,6 @@ class Sale(models.Model):
     issued_to = models.CharField(max_length = 50, null = True, blank = True)
     unit_price = models.IntegerField(default = 0, null = True, blank = True)
 
-
     def get_total(self):
         total = self.quantity * self.item.unit_price
         return int(total)

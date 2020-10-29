@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from product_app.forms import *
-from product_app.models import Product
+from product_app.forms import AddForm, SaleForm
+from product_app.models import Product,Sale
 from django.contrib.auth.decorators import login_required
-from product_app.filters import ProductFilter, CategoryFilter
+from product_app.filters import ProductFilter
 
 
 # Create your views here.
@@ -46,26 +46,6 @@ def all_sales(request):
 
 
 @login_required
-def update(request,product_id):
-    update = Product.objects.get(id = product_id)
-    form = SaleForm()
-    if request.method == 'POST':
-        form = SaleForm(request.POST)
-        if form.is_valid():
-            form.save()
-            print(f"Here is the form {form}" )
-            return redirect('receipt')
-    return render(request, 'products/add_item.html', {'form': form})
-
-
-@login_required
-def delete(request, customer_id):
-    customer_delete = Product.objects.get(id = customer_id)
-    customer_delete.delete()
-    return redirect('all_sales')
-
-
-@login_required
 def product_detail(request, product_id):
     product = Product.objects.get(id = product_id)
     return render(request, 'products/product_detail.html', {'product': product})
@@ -99,14 +79,14 @@ def issue_item(request, pk):
 
             return redirect('receipt') 
 
-    return render (request, 'products/add_item.html',
+    return render (request, 'products/issue_item.html',
      {
     'sales_form': sales_form,
     })
     
 
 @login_required
-def add_item(request, pk):
+def add_to_stock(request, pk):
     issued_item = Product.objects.get(id = pk)
     form = AddForm(request.POST)
 
