@@ -1,0 +1,45 @@
+html,body {
+    position: relative;
+    overflow-x: hidden;
+    background:  url('/static/images/img6.jpg');
+    width: 100% !important;
+    height: 100vh;
+    display: table;
+    position: relative;
+    background-position: center;
+    background-attachment: scroll;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+  
+body{
+      background-color: hsl(0, 0%, 98%);
+      font-family: 'raleway';
+ }
+    
+
+form {
+    width: 40%;
+    margin: 0 auto;
+}
+
+.navbar {
+    background-color: #800020;
+}
+
+.navbar li a {
+    font-size: 20px;
+}
+
+.navbar-brand {
+    font-size: 30px !important;
+}
+
+@media(max-width: 767px){
+    form { 
+        width: 90%;
+    }
+}

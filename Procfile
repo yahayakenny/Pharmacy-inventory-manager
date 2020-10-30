@@ -1,1 +1,1 @@
- web: gunicorn pharmacy_project.wsgi --log-file -
+web: gunicorn pharmacy_project.wsgi --log-file -
