@@ -26,7 +26,8 @@ Pharm plus was originally built for a local pharmacy. It is an inventory manager
 The live site can be viewed here https://pharm-plus.herokuapp.com/
 
 ## TESTING
-Test this app - Username: "pharmacy", password: "1234"
+Username: "pharmacy", 
+Password: "1234"
 
 ## Built with
 - HTML
