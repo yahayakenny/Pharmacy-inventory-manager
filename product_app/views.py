@@ -19,15 +19,9 @@ def home(request):
 @login_required
 def receipt(request): 
     sales = Sale.objects.all().order_by('-id')
-    total  = sum([items.amount_received for items in sales])
-    change = sum([items.get_change() for items in sales])
-    net = total - change
     return render(request, 
     'products/receipt.html', 
     {'sales': sales,
-    'total': total, 
-    'change': change, 
-    'net': net, 
     })
 
 
