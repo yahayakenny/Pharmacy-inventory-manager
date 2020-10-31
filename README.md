@@ -10,10 +10,10 @@ Pharm plus was originally built for a local pharmacy. It is an inventory manager
 -  Within the receipt page, the total cost of the item is calculated based on the quantity purchased and the unit price.
 -  The balance to be received is also calculated by subtracting the total cost from the amount paid.
 -  Based on products sold, a database table of all sales made is created the keeps track of the following:
--  The total amount paid summed up for all the items sold.
--  The total balance received by all customers is also summed up.
--  Net balance after subtracting total balance received from total amout paid.
--  The app keeps a log of the quantity remaining in stock for each item as it is being sold
+a) The total amount paid summed up for all the items sold.
+b) The total balance received by all customers is also summed up.
+c) Net balance after subtracting total balance received from total amout paid.
+d) The app keeps a log of the quantity remaining in stock for each item as it is being sold
 -  The app is also able to replenish depleting stock in the Products quantity table.
 
 ## Demo
