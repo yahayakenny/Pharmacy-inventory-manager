@@ -57,10 +57,6 @@ Run the server:
 $ python manage.py runserver
 ```
 
-### Related
-Copy the localhost in the browser.
-
-
 ## License
 Yahaya Kehinde 2020.
 
