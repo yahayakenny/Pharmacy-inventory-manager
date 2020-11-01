@@ -27,9 +27,7 @@ SECRET_KEY = 'b_k+6%ry)+e1+at=8cxbnk=ox3pl40jc4qk+fydry)0b#*cp7u'
 
 ALLOWED_HOSTS = ['pharm-plus.herokuapp.com','127.0.0.1']
 
-DEBUG = False
-
-ALLOWED_HOSTS = ['pharm-plus.herokuapp.com', '127.0.0.1']
+DEBUG = True
 
 
 # Application definition
